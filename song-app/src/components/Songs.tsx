@@ -3,16 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import SongModel from "../model/song";
 import { SongState, deleteSongStart, selectSong, setEditPage } from "../slices/songSlice";
 import { Song, Btn, SongList, Box } from "./style";
+import { useState } from "react";
+import Edit from "./Edit";
+import Add from "./Add";
 
-interface SongProps {
+interface SongsProps {
+  index:number;
+}
+interface SongProps{
   song:SongModel;
- 
 }
 
-function Songs(){
+function Songs(props:SongsProps){
   const songs = useSelector((state: SongState) => state.songs.list);
-    return (
 
+  const edit = useSelector((state: SongState) => state.songs.isEdit);
+    return (
+  <>
         <Box>
         <SongList key={2}>
           {songs.map((song)=>(
@@ -20,6 +27,8 @@ function Songs(){
           ))}
         </SongList>
        </Box>
+       {props.index===0 && (edit ? <Edit  /> : <Add/>)}
+       </>
      
     )
 }

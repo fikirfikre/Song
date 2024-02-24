@@ -9,14 +9,16 @@ import { SongState, getSongsFetch } from "./slices/songSlice";
 
 import _ from "lodash";
 import Edit from "./components/Edit";
+import { StatState, getSongDataStart } from "./slices/statSlice";
 function App() {
 
   const [index, setSelected] = useState(0);
-  const edit = useSelector((state: SongState) => state.songs.isEdit);
+  const stat = useSelector((state:StatState)=>state.stat.songData)
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getSongsFetch());
+    dispatch(getSongDataStart());
   }, []);
 
 
@@ -28,11 +30,11 @@ function App() {
     </NavBar>
     <Main>
       <Routes>
-        <Route path="/" element={<Songs/>} />
+        <Route path="/" element={<Songs index={index}/>} />
         <Route path="stat" element={<Stat />} />
-
       </Routes>
-      {edit ? <Edit  /> : <Add/>}
+
+      
     </Main>
 
   </BrowserRouter>

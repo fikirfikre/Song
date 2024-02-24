@@ -8,16 +8,20 @@ import createSagaMiddleware from 'redux-saga';
 import { configureStore } from '@reduxjs/toolkit';
 import songsReducer from './slices/songSlice';
 import songSaga from './saga/songSaga';
+import statReducer from './slices/statSlice';
+import statSaga from './saga/statSaga';
 
 const saga = createSagaMiddleware();
 const store = configureStore({
   reducer:{
-    songs:songsReducer
+    songs:songsReducer,
+    stat:statReducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(saga)
 })
 
 const s = saga.run(songSaga);
+const stat = saga.run(statSaga);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

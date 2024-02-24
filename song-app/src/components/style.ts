@@ -73,12 +73,14 @@ border-radius: 0.9rem;
 overflow: auto;
 position: relative;
 
-
-
 `
+export const StatBox = styled(Box)`
+padding:5rem;
+padding-bottom:2rem;
+width:80rem;
+max-width:80rem;`
 export const Nav = styled.div<NavProps>`
 width:10rem;
-
 background-color: ${props => props.bg};
 border-radius: 0.9rem;
 cursor:pointer;
@@ -194,4 +196,48 @@ cursor: pointer;
 padding-left: 0.5rem;
 padding-bottom:0.4rem;
 
+
+
 `
+export const TotalBar = styled.div`
+  background-color:#6741d9;
+  display:flex;
+  min-height:10rem;
+  height:10rem;
+  justify-content:space-around;
+  align-items:center;
+  margin-bottom:1rem;
+  border-radius:1rem;
+  
+`
+export const TotalDiv = styled.div`
+background-color:#2b3035;
+padding:1rem;
+border-radius:0.5rem;
+height:7rem;
+padding:2rem;
+
+p{
+    font-size:1.2rem;
+    color: #adb5bd
+}
+h3{
+    font-size:2rem;
+}
+`
+export const TotalDetail = styled.div`
+background-color:#6741d9;
+height: calc(100vh - 10rem - 7.2rem - 5rem - 5 * 2rem);
+display:flex;
+justify-content:space-around;
+padding:1rem;
+border-radius:1rem;
+`
+export const EachTotal = styled(Box)`
+width:20rem;
+min-width:20rem;
+margin: 2rem 0rem;
+
+`
+export const SongTile =styled(Song)`
+padding:1rem;`
