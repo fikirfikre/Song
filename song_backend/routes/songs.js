@@ -127,55 +127,6 @@ router.get('/stat', async(req,res)=>{
     }
 });
 
-router.get('/stat/genres/:genre',async (req,res)=>{
-    const genre = req.params.genre;
-
-    try {
-       const songCount = await Song.countDocuments({genre});
-       res.json({
-        genre,
-        numberOfSongs: songCount
-       })
-    } catch (error) {
-        res.status(500).jsong({error:error})
-    }
-})
-router.get('/stat/artists/:artist',async(req,res)=>{
-    const artist = req.params.artist;
-    try {
-        console.log(artist)
-        const songCount = await Song.countDocuments({artist});
-        console.log(songCount)
-        const stats = await Song.aggregate([
-            {$match : {artist}},
-            {
-                $lookup:{
-                    from:'albums',
-                    localField:"album",
-                    foreignField:'_id',
-                    as:'albumInfo'
-                },
-
-            },
-            {$unwind: '$albumInfo'},
-            {
-                $group: {
-                    _id: {artist : '$artist'},
-                    numberOfAlbums: {$addToSet: '$albumInfo._id'}
-                }
-            }
-
-        ]);
-        const artistStats = stats[0]
-        res.json({
-            artist:artist,
-            numberOfSongs: songCount,
-            numberOfAlbums: artistStats.numberOfAlbums.length
-        })
-    } catch (error) {
-        
-    }
-})
 
 
 export default router;
