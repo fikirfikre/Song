@@ -200,7 +200,7 @@ padding-bottom:0.4rem;
 
 `
 export const TotalBar = styled.div`
-  background-color:#6741d9;
+
   display:flex;
   min-height:10rem;
   height:10rem;
@@ -216,6 +216,9 @@ padding:1rem;
 border-radius:0.5rem;
 height:7rem;
 padding:2rem;
+outline: none;
+box-shadow: 0 2.4rem 2.4rem rgba(0, 0, 0, 0.1);
+transform: translateY(-2px);
 
 p{
     font-size:1.2rem;
@@ -226,18 +229,30 @@ h3{
 }
 `
 export const TotalDetail = styled.div`
-background-color:#6741d9;
+
 height: calc(100vh - 10rem - 7.2rem - 5rem - 5 * 2rem);
 display:flex;
 justify-content:space-around;
 padding:1rem;
 border-radius:1rem;
+
 `
 export const EachTotal = styled(Box)`
 width:20rem;
 min-width:20rem;
 margin: 2rem 0rem;
+outline: none;
+box-shadow: 0 2.4rem 2.4rem rgba(0, 0, 0, 0.1);
+transform: translateY(-2px);
+overflow:auto;
 
 `
 export const SongTile =styled(Song)`
 padding:1rem;`
+export const Loading = styled.p`
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 4.8rem;
+  `

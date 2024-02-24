@@ -10,7 +10,7 @@ const PORT = 5000;
 const uri = "mongodb+srv://fkr:Tsinat12345@cluster0.11gmire.mongodb.net/?retryWrites=true&w=majority";
 
 app.use(express.json());
-app.use(cors({ origin: `http://localhost:3000`, credentials: true }));
+app.use(cors({ origin: `http://localhost:3001`, credentials: true }));
 app.use('/api',router);
 
 async function connect(){

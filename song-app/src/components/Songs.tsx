@@ -2,10 +2,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import SongModel from "../model/song";
 import { SongState, deleteSongStart, selectSong, setEditPage } from "../slices/songSlice";
-import { Song, Btn, SongList, Box } from "./style";
+import { Song, Btn, SongList, Box, Loading } from "./style";
 import { useState } from "react";
 import Edit from "./Edit";
 import Add from "./Add";
+import Loader from "./Loader";
 
 interface SongsProps {
   index:number;
@@ -16,16 +17,19 @@ interface SongProps{
 
 function Songs(props:SongsProps){
   const songs = useSelector((state: SongState) => state.songs.list);
-
+  const isLoading = useSelector((state: SongState) => state.songs.isLoading);
   const edit = useSelector((state: SongState) => state.songs.isEdit);
     return (
   <>
         <Box>
-        <SongList key={2}>
-          {songs.map((song)=>(
-            <SongTile  song={song} key={song._id} />
-          ))}
-        </SongList>
+          {isLoading ? <Loader/>:
+            <SongList key={2}>
+            {songs.map((song)=>(
+              <SongTile  song={song} key={song._id} />
+            ))}
+          </SongList>
+           }
+      
        </Box>
        {props.index===0 && (edit ? <Edit  /> : <Add/>)}
        </>

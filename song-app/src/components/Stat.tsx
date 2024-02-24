@@ -4,17 +4,22 @@ import { StatState, getSongDataStart } from "../slices/statSlice"
 import { SongByAlbum } from "../model/statistics";
 import { SongState } from "../slices/songSlice";
 import { useEffect } from "react";
+import Loader from "./Loader";
 
 function Stat(){
    const dispatch = useDispatch()
-   const stat = useSelector((state:StatState)=>state.stat.songData)
+   const stat = useSelector((state:StatState)=>state.stat.songData);
+   const isLoading = useSelector((state:StatState)=>state.stat.isLoading);
    const songs = useSelector((state: SongState) => state.songs.list);
    useEffect(()=>{
       dispatch(getSongDataStart())
    },[songs])
   console.log(stat)
    return (
+     
     <StatBox>
+      {!isLoading ?
+     <>
         <TotalBar>
          <TotalDiv>
             <p>Total Songs</p>
@@ -56,8 +61,12 @@ function Stat(){
          ))}
             
          </EachTotal>
-        </TotalDetail>
+        </TotalDetail> 
+        </>
+: <Loader/>}
     </StatBox>
+   
+         
    )
 }
 export default Stat
